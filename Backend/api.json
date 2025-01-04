@@ -1,0 +1,23 @@
+{
+    "users": {
+        "id": "number",
+        "username": "string",
+        "password": "string",
+        "targets": {
+            "programming": [],
+            "exercices": {
+                "abs_legs": [],
+                "biceps_back_farearms": [],
+                "chest_triceps_shoulder": []
+            }
+        },
+        "achievements": {
+            "programming": [],
+            "exercices": {
+                "abs_legs": [],
+                "biceps_back_farearms": [],
+                "chest_triceps_shoulder": []
+            }
+        }
+    }
+}
