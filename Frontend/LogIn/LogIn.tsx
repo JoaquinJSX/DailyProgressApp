@@ -1,6 +1,11 @@
 import styles from './logIn.module.css';
-import { useReducer, useEffect, useState } from 'react';
+import { useReducer } from 'react';
 import { Link } from 'react-router-dom';
+
+interface LogInProps {
+    users: any;
+    setUserLoggedIn: any;
+}
 
 function reducer(state: any, action: any) {
     switch (action.type) {
@@ -11,24 +16,11 @@ function reducer(state: any, action: any) {
             };
         case 'reset':
             return action.initialState; // Resetea el estado al inicial
-        default:
-            throw new Error(`Acción desconocida: ${action.type}`);
     }
 };
 
-export default function LogIn() {
+export default function LogIn({ users, setUserLoggedIn }: LogInProps) {
 
-    useEffect(() => {
-        fetch('http://127.0.0.1:5000/users') // URL correcta
-            .then(res => res.json())
-            .then(data => {
-                setUsers(data);
-                console.log(data);
-            })
-            .catch(error => console.error('Error fetching data:', error));
-    }, []);
-
-    const [users, setUsers] = useState([]);
     const [state, dispatch] = useReducer(reducer, { username: '', password: '' });
 
     function handleChange(e: any) {
@@ -58,7 +50,7 @@ export default function LogIn() {
                     if (users[userId].password != state.password) {
                         alert('Incorrect password');
                     } else {
-                        //do something
+                        setUserLoggedIn(userId);
                     }
                 }
             }
@@ -66,24 +58,34 @@ export default function LogIn() {
     }
 
     return (
-        <div className="log-in_container">
-            <h1>Log In</h1>
-            <form>
-                Enter your username: <input
+        <div className={styles.container}>
+            <h1 className={styles.h1}>Log In</h1>
+            <form className={styles.form}>
+                <label className={styles.label}>Enter your username:</label> <br />
+                <input
+                    className={styles.input}
                     type="text"
                     name='username'
-                    value={state.username} // Vincular con el estado
-                    onChange={handleChange} // Llama a dispatch cuando cambia
-                />
-                Enter your password:  <input
+                    value={state.username}
+                    onChange={handleChange}
+                    autoComplete='off'
+                /> <br />
+                <label className={styles.label}>Enter your password:</label> <br />
+                <input
+                    className={styles.input}
                     type="password"
                     name='password'
-                    value={state.password} // Vincular con el estado
-                    onChange={handleChange} // Llama a dispatch cuando cambia
-                />
-                <button onClick={logIn}>Get into</button>
+                    value={state.password}
+                    onChange={handleChange}
+                /> <br />
+                <button onClick={logIn} className={styles.getIntoBtn}>
+                    Get into
+                </button>
             </form>
-            <Link to='/sign-up'>Don´t have an account?</Link>
+            <Link className={styles.link} to='/sign-up'>Don´t have an account?</Link>
+            <footer className={styles.footer}>
+                &copy; {new Date().getFullYear()} Limitless
+            </footer>
         </div>
     );
 }
