@@ -1,0 +1,36 @@
+.header {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+}
+.header button {
+    font-size: 22px;
+    font-weight: bold;
+    margin-inline: 10px;
+    border: none;
+    border-radius: 10px;
+    height: 30px;
+    width: 150px;
+    background-color: rgb(228, 226, 217);
+    &:hover {
+        transform: scale(1.050);
+        box-shadow: 0 0 8px gold;
+    }
+}
+.header h1 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-left: 350px;
+    text-align: center;
+    margin-top: 10px;
+}
+.picture {
+    margin: 0 auto;
+    text-align: center;
+}
+.img {
+    height: 450px;
+    width: 680px;
+}
+.footer {
+    font-size: 20px;
+    text-align: center;
+}
